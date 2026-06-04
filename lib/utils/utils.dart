@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
-class Utils {}
+Widget playerImage({double h = 200, double hue = 0.18}) {
+  final color = HSVColor.fromAHSV(1, hue * 360, 0.7, 0.9).toColor();
+  return Stack(
+    children: [
+      Image.asset("assets/images/skiing_person.png", height: h),
+      Positioned.fill(
+        child: ColorFiltered(
+          colorFilter: ColorFilter.mode(color, BlendMode.modulate),
+          child: Image.asset("assets/images/skiing_person.png", height: h),
+        ),
+      ),
+    ],
+  );
+}
 
 Widget button({
   required String text,

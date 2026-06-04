@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:module_b/screen/game_screen.dart';
+import 'package:module_b/screen/game_screen.dart';
+import 'package:module_b/screen/game_screen.dart';
+import 'package:module_b/screen/ranking_screen.dart';
+import 'package:module_b/screen/setting_screen.dart';
+import 'package:module_b/utils/info.dart';
 import 'package:module_b/utils/utils.dart';
 
 class AppScreen extends StatefulWidget {
@@ -59,24 +65,59 @@ class _AppScreenState extends State<AppScreen> {
               button(
                 text: "Start Game",
                 onTap: () {
-                  showMessage(context, "Start Game");
+                  setState(() {});
+                  if (controller.text.trim().isEmpty) {
+                    noName();
+                    return;
+                  } else {
+                    playerName = controller.text.trim();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => GameScreen(),
+                      ),
+                    );
+                  }
                 },
               ),
               SizedBox(height: 20),
               button(
                 text: "Rankings",
                 onTap: () {
-                  showMessage(context, "Rankings");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => RankingScreen(),
+                    ),
+                  );
                 },
               ),
               SizedBox(height: 20),
               button(
                 text: "Setting",
                 onTap: () {
-                  showMessage(context, "Setting");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => SettingScreen(),
+                    ),
+                  );
                 },
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void noName() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Invalid"),
+        content: Text("Please enter Player name."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text("OK"),
           ),
         ],
       ),
