@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:module_b/screen/app_screen.dart';
-import 'package:module_b/screen/setting_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: SettingScreen(),
+      home: AppScreen(),
     );
   }
 }

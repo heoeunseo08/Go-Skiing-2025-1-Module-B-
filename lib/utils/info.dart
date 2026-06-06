@@ -1,2 +1,2 @@
 String? playerName;
-double imageHue = 0.18;
+double imageHue = 0.9;

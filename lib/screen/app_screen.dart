@@ -124,12 +124,4 @@ class _AppScreenState extends State<AppScreen> {
     );
   }
 
-  Widget bgImage() => Positioned.fill(
-    child: Image.asset(
-      "assets/images/bg.jpg",
-      fit: BoxFit.cover,
-      height: 1500,
-      width: 1500,
-    ),
-  );
 }

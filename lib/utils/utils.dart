@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget playerImage({double h = 200, double hue = 0.18}) {
-  final color = HSVColor.fromAHSV(1, hue * 360, 0.7, 0.9).toColor();
+  final color = HSVColor.fromAHSV(1, hue * 360, 0.7, 0.9).toColor().withOpacity(0.2);
   return Stack(
     children: [
       Image.asset("assets/images/skiing_person.png", height: h),
@@ -41,3 +41,12 @@ void showMessage(BuildContext context, String text) =>
         duration: Duration(milliseconds: 700),
       ),
     );
+
+Widget bgImage() => Positioned.fill(
+  child: Image.asset(
+    "assets/images/bg.jpg",
+    fit: BoxFit.cover,
+    height: 1500,
+    width: 1500,
+  ),
+);

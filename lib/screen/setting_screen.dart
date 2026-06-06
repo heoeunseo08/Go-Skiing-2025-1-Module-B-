@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:module_b/screen/app_screen.dart';
 import 'package:module_b/utils/info.dart';
 import 'package:module_b/utils/utils.dart';
 
@@ -35,7 +36,11 @@ class _SettingScreenState extends State<SettingScreen> {
             text: "Done",
             onTap: () {
               imageHue = hue;
-              showMessage(context, "done");
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AppScreen(),
+                ),
+              );
             },
           ),
         ],
