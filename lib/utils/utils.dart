@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
-Widget playerImage({double h = 200, double hue = 0.18}) {
-  final color = HSVColor.fromAHSV(1, hue * 360, 0.7, 0.9).toColor().withOpacity(0.2);
+void showMessage(BuildContext context, String text) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(text), duration: Duration(milliseconds: 800)),
+  );
+}
+
+Widget playImage({double h = 200, double hue = 0.18}) {
+  final color = HSVColor.fromAHSV(
+    1,
+    hue * 360,
+    0.7,
+    0.9,
+  ).toColor().withOpacity(0.2);
   return Stack(
     children: [
       Image.asset("assets/images/skiing_person.png", height: h),
@@ -17,36 +28,30 @@ Widget playerImage({double h = 200, double hue = 0.18}) {
 
 Widget button({
   required String text,
-  required VoidCallback onTap,
+  required GestureTapCallback? onTap,
 }) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      color: Color(0xff9cd2f8),
-      width: 150,
-      height: 60,
       alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(vertical: 18),
+      width: 150,
+      color: Color(0xff9cd2f8),
       child: Text(
         text,
-        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
       ),
     ),
   );
 }
 
-void showMessage(BuildContext context, String text) =>
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(text),
-        duration: Duration(milliseconds: 700),
-      ),
-    );
-
-Widget bgImage() => Positioned.fill(
-  child: Image.asset(
-    "assets/images/bg.jpg",
-    fit: BoxFit.cover,
-    height: 1500,
-    width: 1500,
-  ),
-);
+Widget bgImage() {
+  return Positioned.fill(
+    child: Image.asset(
+      "assets/images/bg.jpg",
+      fit: BoxFit.cover,
+      width: 1500,
+      height: 1500,
+    ),
+  );
+}

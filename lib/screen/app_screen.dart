@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:module_b/screen/game_screen.dart';
-import 'package:module_b/screen/game_screen.dart';
-import 'package:module_b/screen/game_screen.dart';
 import 'package:module_b/screen/ranking_screen.dart';
 import 'package:module_b/screen/setting_screen.dart';
 import 'package:module_b/utils/info.dart';
@@ -16,61 +14,61 @@ class AppScreen extends StatefulWidget {
 
 class _AppScreenState extends State<AppScreen> {
   TextEditingController controller = TextEditingController();
-
-  OutlineInputBorder boarder = OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.black, width: 1.5),
+  OutlineInputBorder border = OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.black, width: 1),
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
         children: [
           bgImage(),
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Colors.white.withOpacity(0.55),
+            color: Colors.white.withOpacity(0.6),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 40),
               Text(
                 "Go Skiing",
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 35),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: TextFormField(
                   controller: controller,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                   decoration: InputDecoration(
+                    disabledBorder: border,
+                    focusedBorder: border,
+                    enabledBorder: border,
+                    border: border,
                     hint: Text(
                       "Player name",
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    enabledBorder: boarder,
-                    focusedBorder: boarder,
+                  ),
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 35),
               button(
                 text: "Start Game",
                 onTap: () {
-                  setState(() {});
                   if (controller.text.trim().isEmpty) {
                     noName();
                     return;
                   } else {
-                    playerName = controller.text.trim();
+                    setState(() => playerName = controller.text.trim());
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => GameScreen(),
@@ -79,27 +77,23 @@ class _AppScreenState extends State<AppScreen> {
                   }
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 35),
               button(
                 text: "Rankings",
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => RankingScreen(),
-                    ),
-                  );
-                },
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => RankingScreen(),
+                  ),
+                ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 35),
               button(
                 text: "Setting",
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => SettingScreen(),
-                    ),
-                  );
-                },
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SettingScreen(),
+                  ),
+                ),
               ),
             ],
           ),
@@ -113,15 +107,14 @@ class _AppScreenState extends State<AppScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Invalid"),
-        content: Text("Please enter Player name."),
+        content: Text("Please enter your player name"),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.pop(context),
             child: Text("OK"),
           ),
         ],
       ),
     );
   }
-
 }

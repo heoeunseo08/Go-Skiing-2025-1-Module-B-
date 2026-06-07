@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:module_b/screen/app_screen.dart';
 import 'package:module_b/utils/info.dart';
 import 'package:module_b/utils/utils.dart';
 
@@ -23,24 +22,21 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: .center,
+        crossAxisAlignment: .center,
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(width: MediaQuery.of(context).size.width),
-          playerImage(hue: hue),
           SizedBox(height: 50),
-          manColor(),
+          playImage(hue: hue),
+          SizedBox(height: 50),
+          selectManColor(),
           SizedBox(height: 50),
           button(
             text: "Done",
             onTap: () {
               imageHue = hue;
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AppScreen(),
-                ),
-              );
+              Navigator.pop(context);
             },
           ),
         ],
@@ -48,13 +44,15 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-  Widget manColor() {
+  Widget selectManColor() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 70),
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Slider(
+        thumbColor: Colors.white,
+        activeColor: Color(0xff2d9ffd),
         value: hue,
-        max: 1,
         min: 0,
+        max: 1,
         onChanged: (value) => setState(() => hue = value),
       ),
     );
